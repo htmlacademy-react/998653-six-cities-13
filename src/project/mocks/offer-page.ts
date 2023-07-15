@@ -1,44 +1,58 @@
-const OFFER_COUNT = 5;
+import faker from '@faker-js/faker';
+import { OFFER_COUNT } from '../const/const';
+
+type location= {
+	latitude: number;
+	longitude: number;
+	zoom: number;
+}
+
+type city = {
+	name: string;
+	location: location;
+}
+
+export interface offer {
+	id: string;
+	title: string;
+	type: string;
+	price: number;
+	city: city;
+	location: location;
+	isFavorite: boolean;
+	isPremium: boolean;
+	rating: number;
+	previewImage: string;
+}
 
 function getOffer(){
+
+	const location: location = {
+		latitude: faker.location.latitude(),
+		longitude: faker.location.longitude(),
+		zoom: 1
+	};
+
+	const city: city = {
+		name: 'string',
+		location: location
+	};
+
 	return ({
-		'id': '6af6f711-c28d-4121-82cd-e0b462a27f00',
-		'title': 'Beautiful & luxurious studio at great location',
-		'type': 'apartment',
+		id: faker.string.uuid(),
+		title: 'Beautiful & luxurious studio at great location',
+		type: 'apartment',
 		'price': 120,
-		'city': {
-			'name': 'Amsterdam',
-			'location': {
-				'latitude': 52.35514938496378,
-				'longitude': 4.673877537499948,
-				'zoom': 8
-			}},
-		'location': {
-			'latitude': 52.35514938496378,
-			'longitude': 4.673877537499948,
-			'zoom': 8
-		},
+		'city':  city,
+		'location': location,
 		'isFavorite': false,
 		'isPremium': false,
 		'rating': 4,
-		'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
-		'bedrooms': 3,
-		'goods': [
-			'Heating'
-		],
-		'host': {
-			'name': 'Oliver Conner',
-			'avatarUrl': 'https://url-to-image/image.png',
-			'isPro': false
-		},
-		'images': [
-			'https://url-to-image/image.png'
-		],
-		'maxAdults': 4
+		'previewImage': 'https://url-to-image/image.png'
 	});
 }
 
-function getOffers(): offers[]{
+function getOffers(): offer[]{
 	return Array.from({length: OFFER_COUNT}, getOffer());
 }
 
