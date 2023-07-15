@@ -1,5 +1,5 @@
 import faker from '@faker-js/faker';
-import { OFFER_COUNT } from '../const/const';
+import { OFFER_COUNT, CITIES, OFFER_TYPES } from '../const/const';
 
 type location= {
 	latitude: number;
@@ -28,32 +28,30 @@ export interface offer {
 function getOffer(){
 
 	const location: location = {
-		latitude: faker.location.latitude(),
-		longitude: faker.location.longitude(),
-		zoom: 1
+		latitude: faker.location.latitude(10, -10, 5),
+		longitude: faker.location.longitude(10, -10, 5),
+		zoom: faker.number.int({ min: 1, max: 6 })
 	};
 
 	const city: city = {
-		name: 'string',
+		name: faker.helpers.arrayElement(CITIES),
 		location: location
 	};
 
 	return ({
 		id: faker.string.uuid(),
-		title: 'Beautiful & luxurious studio at great location',
-		type: 'apartment',
-		'price': 120,
-		'city':  city,
-		'location': location,
-		'isFavorite': false,
-		'isPremium': false,
-		'rating': 4,
-		'previewImage': 'https://url-to-image/image.png'
+		title: faker.word.words({count:{ min: 5, max: 10 }}),
+		type: faker.helpers.arrayElement(OFFER_TYPES),
+		price: faker.number.int({ min: 50, max: 1000 }),
+		city: city,
+		location: location,
+		isFavorite: faker.datatype.boolean(),
+		isPremium: faker.datatype.boolean(),
+		rating: faker.number.float({ min: 1, max: 5, precision: 0.1 }),
+		previewImage: faker.image.urlLoremFlickr({  width: 128, height: 128, category: 'nature' })
 	});
 }
 
-function getOffers(): offer[]{
-	return Array.from({length: OFFER_COUNT}, getOffer());
-}
+const offers = faker.helpers.multiple(getOffer, {count: OFFER_COUNT});
 
-export default getOffers();
+export default offers;
