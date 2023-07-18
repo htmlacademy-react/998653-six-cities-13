@@ -1,10 +1,19 @@
-import PlaceCard from '../../pages/offer-page/offer-page';
+import { PlaceCard } from '../offer-page/offer-page';
+import { moskOfferItem } from '../../mocks/offers';
+import { CITIES } from '../../const/index';
+import classNames from 'classnames';
 
-type MainPageProps ={
-	placeCount: number;
+const enum Default {
+	Amount = 0,
 }
 
-function MainPage({placeCount}: MainPageProps): JSX.Element {
+export interface MainPageProps {
+	offersAmount?: number;
+}
+
+function MainPage({ offersAmount = Default.Amount }: MainPageProps) {
+
+	const offers = Array.from({ length: offersAmount }, moskOfferItem);
 	return (
 		<div className="page page--gray page--main">
 			<header className="header">
@@ -50,36 +59,21 @@ function MainPage({placeCount}: MainPageProps): JSX.Element {
 				<div className="tabs">
 					<section className="locations container">
 						<ul className="locations__list tabs__list">
-							<li className="locations__item">
-								<a className="locations__item-link tabs__item" href="#">
-									<span>Paris</span>
-								</a>
-							</li>
-							<li className="locations__item">
-								<a className="locations__item-link tabs__item" href="#">
-									<span>Cologne</span>
-								</a>
-							</li>
-							<li className="locations__item">
-								<a className="locations__item-link tabs__item" href="#">
-									<span>Brussels</span>
-								</a>
-							</li>
-							<li className="locations__item">
-								<a className="locations__item-link tabs__item tabs__item--active">
-									<span>Amsterdam</span>
-								</a>
-							</li>
-							<li className="locations__item">
-								<a className="locations__item-link tabs__item" href="#">
-									<span>Hamburg</span>
-								</a>
-							</li>
-							<li className="locations__item">
-								<a className="locations__item-link tabs__item" href="#">
-									<span>Dusseldorf</span>
-								</a>
-							</li>
+							{CITIES.map((city) =>(
+								<li className="locations__item" key ={city}>
+									<a className={classNames(
+										'locations__item-link',
+										{
+											'tabs__item--active': city === 'Amsterdam',
+										},
+										'tabs__item'
+									)}
+									href="#"
+									>
+										<span>{city}</span>
+									</a>
+								</li>
+							))}
 						</ul>
 					</section>
 				</div>
@@ -87,7 +81,7 @@ function MainPage({placeCount}: MainPageProps): JSX.Element {
 					<div className="cities__places-container container">
 						<section className="cities__places places">
 							<h2 className="visually-hidden">Places</h2>
-							<b className="places__found">{placeCount} places to stay in Amsterdam</b>
+							<b className="places__found">{offersAmount} places to stay in Amsterdam</b>
 							<form className="places__sorting" action="#" method="get">
 								<span className="places__sorting-caption">Sort by</span>
 								<span className="places__sorting-type" tabIndex={0}>
@@ -115,8 +109,9 @@ function MainPage({placeCount}: MainPageProps): JSX.Element {
 								</ul>
 							</form>
 							<div className="cities__places-list places__list tabs__content">
-								{Array.from({length: placeCount}, (_, index) =>(<PlaceCard key={index}/>))	}
-
+								{offers.map((offer) =>(
+									<PlaceCard {...offer} key={offer.id}/>
+								))}
 							</div>
 						</section>
 						<div className="cities__right-section">
@@ -130,4 +125,4 @@ function MainPage({placeCount}: MainPageProps): JSX.Element {
 	);
 }
 
-export default MainPage;
+export{ MainPage } ;

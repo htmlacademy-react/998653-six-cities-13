@@ -1,12 +1,9 @@
-import MainPage from '../../components/pages/main-page/main-page';
+import { MainPage, MainPageProps } from '../../pages/main-page/main-page';
 
-type AppProps = {
-	placeCount: number;
-}
+type AppProps = MainPageProps;
 
-
-function App({placeCount}: AppProps):JSX.Element {
-	return <MainPage placeCount={placeCount} />;
+function App({ offersAmount } : AppProps):JSX.Element {
+	return <MainPage offersAmount={offersAmount} />;
 }
 
 
