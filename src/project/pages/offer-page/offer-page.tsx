@@ -68,5 +68,4 @@ function PlaceCard({
 		</article>
 	);
 }
-
 export { PlaceCard };
