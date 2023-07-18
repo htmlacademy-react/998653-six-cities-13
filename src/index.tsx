@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import App from './project/components/app/app';
+import { TemporalData } from './project/const/index';
 
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement
@@ -7,6 +9,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
 	<React.StrictMode>
-		<h1>Hello, World!</h1>
+		<App offersAmount={TemporalData.OfferAmount} />
 	</React.StrictMode>
 );
