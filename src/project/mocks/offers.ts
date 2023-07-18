@@ -1,6 +1,6 @@
-import faker from '@faker-js/faker'; //проблема с импортом
-import type { ServerLocation, ServerOffer } from '../types/offers';
 
+import { faker } from '@faker-js/faker'; //проблема с импортом
+import type { ServerLocation, ServerOffer } from '../types/offers';
 import { CITIES, OFFER_TYPES } from '../const/index';
 
 const moskLocation = ():ServerLocation => ({
