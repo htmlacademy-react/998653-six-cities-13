@@ -2,6 +2,7 @@ import { PlaceCard } from '../offer-page/offer-page';
 import { moskOfferItem } from '../../mocks/offers';
 import { CITIES } from '../../const/index';
 import classNames from 'classnames';
+import { Helmet } from 'react-helmet-async';
 
 const enum Default {
 	Amount = 0,
@@ -80,6 +81,9 @@ function MainPage({ offersAmount = Default.Amount }: MainPageProps) {
 				<div className="cities">
 					<div className="cities__places-container container">
 						<section className="cities__places places">
+							<Helmet>
+								<title>Главная страница</title>
+							</Helmet>
 							<h2 className="visually-hidden">Places</h2>
 							<b className="places__found">{offersAmount} places to stay in Amsterdam</b>
 							<form className="places__sorting" action="#" method="get">
