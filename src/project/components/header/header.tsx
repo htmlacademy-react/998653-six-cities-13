@@ -1,10 +1,10 @@
 import classNames from 'classnames';
-import { Link, userLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { AppRoute } from '../../const/const';
 
 export function Header() {
-	const { pathname } = userLocation; //?
+	const { pathname } = useLocation;
 
 	return(
 		<header className="header">
@@ -14,7 +14,7 @@ export function Header() {
 						<Link
 							className={classNames('header__logo-link',
 								{
-									'header__logo-link--active': pathmname === AppRoute.Main,
+									'header__logo-link--active': pathname === AppRoute.Main,
 								})} to={AppRoute.Main}
 						>
 							<img

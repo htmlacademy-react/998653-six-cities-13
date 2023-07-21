@@ -10,3 +10,5 @@ export enum AutorizationStatus {
 	NoAuth = 'NO_AUTH',
 	UnKnown = 'UNKNOWN',
 }
+
+export const PROJECT_NAME = 'six-cities';
