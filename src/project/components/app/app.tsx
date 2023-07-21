@@ -2,7 +2,6 @@ import { MainPage, MainPageProps } from '../../pages/main-page/main-page';
 import { HelmetProvider } from 'react-helmet-async';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import { AppRoute, AutorizationStatus } from '../../const/const';
-import { MainPageEmpty} from '../../pages/main-page/main-empty';
 import { FavoritePage }	from '../../pages/favorite-page/favorite-page';
 import { LoginPage } from '../../pages/login-page/login-page';
 import { PlaceCard }from '../../pages/offer-page/offer-page';
