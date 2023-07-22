@@ -1,5 +1,5 @@
-import { PlaceCard } from '../offer-page/offer-page';
-import { moskOfferItem } from '../../mocks/offers';
+import { PlaceCard } from '../../components/place-card/place-card';
+import { mockOfferItem } from '../../mocks/offers';
 import { CITIES } from '../../const/index';
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet-async';
@@ -14,7 +14,7 @@ export interface MainPageProps {
 
 function MainPage({ offersAmount = Default.Amount }: MainPageProps) {
 
-	const offers = Array.from({ length: offersAmount }, moskOfferItem);
+	const offers = Array.from({ length: offersAmount }, mockOfferItem);
 	return (
 		<div className="page page--gray page--main">
 			<Helmet>
