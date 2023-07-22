@@ -1,9 +1,9 @@
-import type { HTMLAtttibutes } from 'react'; //хз
+import type { HTMLAttributes } from 'react';
 
 import { Link as RouterLink } from 'react-router-dom';
 
 type LinkProps = Pick<
-	HTMLAtttibutes<HTMLAnchorElement>,
+	HTMLAttributes<HTMLAnchorElement>,
 	'children' | 'className'
 > & {
 	href: string;
