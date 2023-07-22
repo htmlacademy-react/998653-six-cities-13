@@ -1,14 +1,16 @@
-export enum AppRoute {
-Main = '/',
-Login = '/login',
-Favorites = '/favorites',
-Offer = '/offer/:id'
-}
+const AppRoute = {
+	Main: '/',
+	Login: '/login',
+	Favorites: '/favorites',
+	Offer: '/offer/:id'
+} as const;
 
-export enum AutorizationStatus {
-	Auth = 'AUTH',
-	NoAuth = 'NO_AUTH',
-	UnKnown = 'UNKNOWN',
-}
+const AutorizationStatus = {
+	Auth: 'AUTH',
+	NoAuth:  'NO_AUTH',
+	UnKnown: 'UNKNOWN',
+} as const;
 
-export const PROJECT_NAME = '6 cities';
+const PROJECT_NAME = '6 cities';
+
+export { AppRoute, AutorizationStatus, PROJECT_NAME };

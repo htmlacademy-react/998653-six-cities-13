@@ -1,3 +1,4 @@
+import { Header } from '../../components/header/header';
 import { PlaceCard } from '../../components/place-card/place-card';
 import { mockOfferItem } from '../../mocks/offers';
 import { CITIES } from '../../const/index';
@@ -20,6 +21,7 @@ function MainPage({ offersAmount = Default.Amount }: MainPageProps) {
 			<Helmet>
 				<title>{`6 cities: ${offersAmount} places to stay in Amsterdam`}</title>
 			</Helmet>
+			<Header />
 			<main className="page__main page__main--index">
 				<h1 className="visually-hidden">Cities</h1>
 				<div className="tabs">
