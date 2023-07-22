@@ -1,15 +1,15 @@
-import type { AnchorHTMLAtttibutes } from 'react'; //хз
+import type { HTMLAtttibutes } from 'react'; //хз
 
 import { Link as RouterLink } from 'react-router-dom';
 
 type LinkProps = Pick<
-	AnchorHTMLAtttibutes<HTMLAnchorElement>,
+	HTMLAtttibutes<HTMLAnchorElement>,
 	'children' | 'className'
 > & {
 	href: string;
 };
 
-export function Link({children, href, ...props}:LinkProps) {
+export function AppLink({children, href, ...props}:LinkProps) {
 	const isExternal = href.startsWith('http://');
 	const isAncor = href.startsWith('#');
 	if(isExternal){

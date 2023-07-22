@@ -11,4 +11,4 @@ export enum AutorizationStatus {
 	UnKnown = 'UNKNOWN',
 }
 
-export const PROJECT_NAME = 'six-cities';
+export const PROJECT_NAME = '6 cities';

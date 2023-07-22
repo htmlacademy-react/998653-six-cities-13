@@ -9,7 +9,7 @@ const moskLocation = ():ServerLocation => ({
 	zoom: faker.number.int({ min: 1, max: 6 })
 });
 
-export const moskOfferItem = () => ({
+export const mockOfferItem = () => ({
 	city: {
 		name: faker.helpers.arrayElement(CITIES),
 		location: moskLocation(),
