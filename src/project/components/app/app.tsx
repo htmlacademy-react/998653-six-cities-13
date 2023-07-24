@@ -8,10 +8,11 @@ import { FavoritePage }	from '../../pages/favorite-page/favorite-page';
 import { LoginPage } from '../../pages/login-page/login-page';
 import { OfferPage }from '../../pages/offer-page/offer-page';
 import { NotFoundScreen } from '../../pages/not-found-screen/not-found-screen';
-import { PrivatrRoute } from './private-route/private-route';
+import { PrivateRoute, PublicRoute } from '../../pages/AccessRoute';
 
 
 function App() {
+	const autorizationStatus = AutorizationStatus.Auth;
 	return (
 		<HelmetProvider>
 			<BrowserRouter>
@@ -20,26 +21,28 @@ function App() {
 						path={AppRoute.Main}
 					/>
 					<Route
-						path={AppRoute.Favorites}
 						element={
-							<PrivatrRoute
-								autorizationStatus={AutorizationStatus.NoAuth}
-							>
+							<PrivateRoute status={autorizationStatus}>
 								<FavoritePage />
-							</PrivatrRoute>
+							</PrivateRoute>
 						}
+						path={AppRoute.Favorites}
 					/>
 					<Route
+						element={
+							<PublicRoute status={autorizationStatus}>
+								<LoginPage></LoginPage>
+							</PublicRoute>
+						}
 						path={AppRoute.Login}
-						element={<LoginPage />}
 					/>
 					<Route
-						path={AppRoute.Offer}
 						element={<OfferPage />}
+						path={AppRoute.Offer}
 					/>
 					<Route
-						path='*'
 						element={<NotFoundScreen />}
+						path='*'
 					/>
 				</Routes>
 			</BrowserRouter>

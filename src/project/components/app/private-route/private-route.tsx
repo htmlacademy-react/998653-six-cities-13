@@ -6,7 +6,7 @@ type PrivateRouteProps = {
 	children: JSX.Element;
 };
 
-export function PrivatrRoute(props: PrivateRouteProps): JSX.Element {
+export function PrivateRoute(props: PrivateRouteProps): JSX.Element {
 	const { autorizationStatus, children } = props;
 
 	return (
