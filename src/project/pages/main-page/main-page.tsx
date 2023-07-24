@@ -4,6 +4,7 @@ import { mockOfferItem } from '../../mocks/offers';
 import { CITIES } from '../../const/index';
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet-async';
+import { faker } from '@faker-js/faker';
 
 const enum Default {
 	Amount = 0,
@@ -21,7 +22,7 @@ function MainPage({ offersAmount = Default.Amount }: MainPageProps) {
 			<Helmet>
 				<title>{`6 cities: ${offersAmount} places to stay in Amsterdam`}</title>
 			</Helmet>
-			<Header />
+			<Header isAuthorized={faker.datatype.boolean()} />
 			<main className="page__main page__main--index">
 				<h1 className="visually-hidden">Cities</h1>
 				<div className="tabs">

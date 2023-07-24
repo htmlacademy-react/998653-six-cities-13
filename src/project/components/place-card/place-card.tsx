@@ -1,9 +1,11 @@
 import classNames from 'classnames';
 import type { ServerOffer } from '../../types/offers';
+import { AppLink } from '../../link/link';
 
-type OfferCardProps = Pick<ServerOffer, 'id' |'isFavorite' | 'isPremium' | 'previewImage' |'price' | 'rating' | 'title' | 'type'>
+type OfferCardProps = Pick<ServerOffer, 'id' |'isFavorite' | 'isPremium' | 'previewImage' |'price' | 'rating' | 'title' | 'type' >
 
 function PlaceCard({
+	id,
 	isFavorite,
 	isPremium,
 	previewImage,
@@ -22,6 +24,9 @@ function PlaceCard({
 		'button'
 	);
 
+	const href = `/offer/:${id}`;
+
+
 	return (
 		<article className="cities__card place-card">
 			{isPremium && (
@@ -31,7 +36,7 @@ function PlaceCard({
 			)}
 
 			<div className="cities__image-wrapper place-card__image-wrapper">
-				<a href="#">
+				<AppLink href={href}>
 					<img
 						className="place-card__image"
 						src={previewImage}
@@ -39,7 +44,7 @@ function PlaceCard({
 						height={200}
 						alt="Place image"
 					/>
-				</a>
+				</AppLink>
 			</div>
 			<div className="place-card__info">
 				<div className="place-card__price-wrapper">
@@ -61,7 +66,7 @@ function PlaceCard({
 					</div>
 				</div>
 				<h2 className="place-card__name">
-					<a href="#">{title}</a>
+					<AppLink href={href}>{title}</AppLink>
 				</h2>
 				<p className="place-card__type">{type}</p>
 			</div>
