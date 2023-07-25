@@ -1,5 +1,5 @@
 import { PlaceCard } from '../offer-page/offer-page';
-import { moskOfferItem } from '../../mocks/offers';
+import { mockOfferItem } from '../../mocks/offers';
 import { CITIES } from '../../const/index';
 import classNames from 'classnames';
 
@@ -13,7 +13,7 @@ export interface MainPageProps {
 
 function MainPage({ offersAmount = Default.Amount }: MainPageProps) {
 
-	const offers = Array.from({ length: offersAmount }, moskOfferItem);
+	const offers = Array.from({ length: offersAmount }, mockOfferItem);
 	return (
 		<div className="page page--gray page--main">
 			<header className="header">
