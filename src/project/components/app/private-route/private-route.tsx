@@ -15,3 +15,4 @@ export function PrivateRoute(props: PrivateRouteProps): JSX.Element {
 			: <Navigate to={AppRoute.Login} />
 	);
 }
+
