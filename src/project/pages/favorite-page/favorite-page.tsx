@@ -1,4 +1,6 @@
-function FavoritePage(): JSX.Element {
+import { Helmet } from 'react-helmet-async';
+
+export function FavoritePage(): JSX.Element {
 	return (
 		<div className="page">
 			<header className="header">
@@ -42,6 +44,9 @@ function FavoritePage(): JSX.Element {
 			<main className="page__main page__main--favorites">
 				<div className="page__favorites-container container">
 					<section className="favorites">
+						<Helmet>
+							<title>Избранные локации</title>
+						</Helmet>
 						<h1 className="favorites__title">Saved listing</h1>
 						<ul className="favorites__list">
 							<li className="favorites__locations-items">
@@ -227,4 +232,3 @@ function FavoritePage(): JSX.Element {
 	);
 }
 
-export default FavoritePage;
