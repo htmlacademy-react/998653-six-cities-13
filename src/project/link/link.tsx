@@ -11,7 +11,7 @@ type LinkProps = Pick<
 
 export function AppLink({children, href, ...props}:LinkProps) {
 	const isExternal = href.startsWith('http://');
-	const isAncor = href.startsWith('#');
+	const isAnchor = href.startsWith('#');
 	if(isExternal){
 		return (
 			<a href={href} rel ="noopener noreferrer" target="_blank" {...props}>
@@ -20,7 +20,7 @@ export function AppLink({children, href, ...props}:LinkProps) {
 		);
 	}
 
-	if(isAncor) {
+	if(isAnchor) {
 		return (
 			<a href = {href} {...props}>
 				{children}
@@ -29,7 +29,7 @@ export function AppLink({children, href, ...props}:LinkProps) {
 	}
 
 	return (
-		<RouterLink to={href} {...props}></RouterLink>
+		<RouterLink to={href} {...props}>{children}</RouterLink>
 	);
 }
 

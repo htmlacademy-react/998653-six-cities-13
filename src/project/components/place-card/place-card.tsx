@@ -24,7 +24,7 @@ function PlaceCard({
 		'button'
 	);
 
-	const href = `/offer/:${id}`;
+	const href = `/offer/${id}`;
 
 
 	return (

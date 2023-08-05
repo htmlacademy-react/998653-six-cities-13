@@ -1,24 +1,22 @@
+/* eslint-disable no-unused-expressions */
 import { ReactNode } from 'react';
 
 import { Navigate } from 'react-router-dom';
 
-import { AutorizationStatus } from '../const/const';
+import { AuthorizationStatus } from '../const/const';
 import { AppRoute } from '../const/const';
 
 interface AccessRouteProps {
 	children: ReactNode;
-	status: AutorizationStatus;
+	status: AuthorizationStatus;
 }
-
-const createAccessRoute = (accessStatus: AutorizationStatus, navigateRoute: string) => {
-	// eslint-disable-next-line no-unused-expressions
-	({children, status}:AccessRouteProps) => {
-		if(status === accessStatus) {
-			return children;
-		}
-		return <Navigate to={navigateRoute} />;
-	};
+// eslint-disable-next-line react/display-name
+const createAccessRoute = (accessStatus: AuthorizationStatus, navigateRoute: string) => ({children, status}:AccessRouteProps) => {
+	if(status === accessStatus) {
+		return children;
+	}
+	return <Navigate to={navigateRoute} />;
 };
 
-export const PrivateRoute = createAccessRoute(AutorizationStatus.Auth, AppRoute.Login);
-export const PublicRoute = createAccessRoute(AutorizationStatus.NoAuth, AppRoute.Main);
+export const PrivateRoute = createAccessRoute(AuthorizationStatus.Auth, AppRoute.Login);
+export const PublicRoute = createAccessRoute(AuthorizationStatus.NoAuth, AppRoute.Main);

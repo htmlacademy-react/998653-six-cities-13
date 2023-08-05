@@ -3,7 +3,7 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import { TemporalData } from '../../const/index';
 import { MainPage } from '../../pages/main-page/main-page';
 import { HelmetProvider } from 'react-helmet-async';
-import { AppRoute, AutorizationStatus } from '../../const/const';
+import { AppRoute, AuthorizationStatus } from '../../const/const';
 import { FavoritePage }	from '../../pages/favorite-page/favorite-page';
 import { LoginPage } from '../../pages/login-page/login-page';
 import { OfferPage }from '../../pages/offer-page/offer-page';
@@ -12,7 +12,7 @@ import { PrivateRoute, PublicRoute } from '../../pages/AccessRoute';
 
 
 function App() {
-	const autorizationStatus = AutorizationStatus.Auth;
+	const authorizationStatus = AuthorizationStatus.Auth;
 	return (
 		<HelmetProvider>
 			<BrowserRouter>
@@ -22,7 +22,7 @@ function App() {
 					/>
 					<Route
 						element={
-							<PrivateRoute status={autorizationStatus}>
+							<PrivateRoute status={authorizationStatus}>
 								<FavoritePage />
 							</PrivateRoute>
 						}
@@ -30,7 +30,7 @@ function App() {
 					/>
 					<Route
 						element={
-							<PublicRoute status={autorizationStatus}>
+							<PublicRoute status={authorizationStatus}>
 								<LoginPage></LoginPage>
 							</PublicRoute>
 						}
