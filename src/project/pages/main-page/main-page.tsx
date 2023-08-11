@@ -27,7 +27,8 @@ function MainPage({ offers }: MainPageProps) {
 
 	const [selectedCity, setCity] = useState(cities[0]);
 
-	const [activeOffer, setOfer] = useState<null / string>(null);
+	const [activeOffer, setOffer] = useState<null | string>(null);
+	console.log(activeOffer);
 
 	return (
 		<div className="page page--gray page--main">
@@ -46,7 +47,7 @@ function MainPage({ offers }: MainPageProps) {
 										},
 										'tabs__item'
 									)}
-									href={`#${city.toLowerCase()}`}
+									href={'#'}
 									onClick={() => setCity(city)}
 									>
 										<span>{city}</span>
@@ -91,7 +92,7 @@ function MainPage({ offers }: MainPageProps) {
 							</form>
 							<div className="cities__places-list places__list tabs__content">
 								{offers.map((offer) =>(
-									<PlaceCard {...offer} key={offer.id}/>
+									<PlaceCard {...offer} key={offer.id} setActive={setOffer}/>
 								))}
 							</div>
 						</section>

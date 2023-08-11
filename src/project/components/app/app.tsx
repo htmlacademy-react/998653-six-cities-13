@@ -5,7 +5,7 @@ import {
 
 import { AppRoute} from '../../const/const';
 import { mockAuthStatus } from '../../mocks/auth';
-import { mockOffers } from '../../mocks/offers';
+import { mockedOffers } from '../../mocks/offers';
 import { NotFoundScreen } from '../../pages/not-found-screen/not-found-screen';
 import { PrivateRoute, PublicRoute } from '../../pages/AccessRoute';
 import { FavoritePage }	from '../../pages/favorite-page/favorite-page';
@@ -15,11 +15,9 @@ import { OfferPage }from '../../pages/offer-page/offer-page';
 
 const authorizationStatus = mockAuthStatus();
 
-const mockedOffers = mockOffers; //или  mockOffers()
-
 const router = createBrowserRouter([
 	{
-		element: <MainPage offers={mockOffers} />,
+		element: <MainPage offers={mockedOffers} />,
 		path: AppRoute.Main,
 	},
 

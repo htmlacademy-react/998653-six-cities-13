@@ -40,8 +40,6 @@ function PlaceCard({
 		setActive!(null);
 	}
 
-
-
 	return (
 		<article
 			className="cities__card place-card"
