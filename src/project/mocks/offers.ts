@@ -38,3 +38,4 @@ export const mockAllOffersInfo = (): ServerOffer & FullOffer => ({
 	maxAdults: faker.number.int({max: 12, min: 0})
 });
 
+export const mockOffers = Array.from({ length: 50 }, () => mockAllOffersInfo);

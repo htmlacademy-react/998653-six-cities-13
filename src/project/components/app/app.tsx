@@ -1,18 +1,25 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { TemporalData } from '../../const/index';
-import { MainPage } from '../../pages/main-page/main-page';
-import { AppRoute, AuthorizationStatus } from '../../const/const';
-import { FavoritePage }	from '../../pages/favorite-page/favorite-page';
-import { LoginPage } from '../../pages/login-page/login-page';
-import { OfferPage }from '../../pages/offer-page/offer-page';
+import {
+	RouterProvider,
+	createBrowserRouter
+} from 'react-router-dom';
+
+import { AppRoute} from '../../const/const';
+import { mockAuthStatus } from '../../mocks/auth';
+import { mockOffers } from '../../mocks/offers';
 import { NotFoundScreen } from '../../pages/not-found-screen/not-found-screen';
 import { PrivateRoute, PublicRoute } from '../../pages/AccessRoute';
+import { FavoritePage }	from '../../pages/favorite-page/favorite-page';
+import { LoginPage } from '../../pages/login-page/login-page';
+import { MainPage } from '../../pages/main-page/main-page';
+import { OfferPage }from '../../pages/offer-page/offer-page';
 
-const authorizationStatus = AuthorizationStatus.Auth;
+const authorizationStatus = mockAuthStatus();
+
+const mockedOffers = mockOffers; //или  mockOffers()
 
 const router = createBrowserRouter([
 	{
-		element: <MainPage offersAmount={TemporalData.OfferAmount}/>,
+		element: <MainPage offers={mockOffers} />,
 		path: AppRoute.Main,
 	},
 
