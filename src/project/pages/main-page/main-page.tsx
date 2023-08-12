@@ -1,43 +1,53 @@
+import { useState } from 'react';
+import { faker } from '@faker-js/faker';
 import { Header } from '../../components/header/header';
 import { PlaceCard } from '../../components/place-card/place-card';
-import { mockOfferItem } from '../../mocks/offers';
-import { CITIES } from '../../const/index';
 import classNames from 'classnames';
-import { Helmet } from 'react-helmet-async';
-import { faker } from '@faker-js/faker';
+import { ServerOffer } from '../../types/offers';
 
-const enum Default {
-	Amount = 0,
+
+export type MainPageProps = {
+	offers: ServerOffer[];
 }
 
-export interface MainPageProps {
-	offersAmount?: number;
-}
+function MainPage({ offers }: MainPageProps) {
 
-function MainPage({ offersAmount = Default.Amount }: MainPageProps) {
+	const offersByCity: Record<string, ServerOffer[]> = {};
+	for(const offer of offers) {
+		const city = offer.city.name;
+		if (city in offersByCity) {
+			offersByCity[city].push(offer);
+			continue;
+		}
 
-	const offers = Array.from({ length: offersAmount }, mockOfferItem);
+		offersByCity[city] = [offer];
+		continue;
+	}
+	const cities = Object.keys(offersByCity);
+
+	const [selectedCity, setCity] = useState(cities[0]);
+
+	const [activeOffer, setOfer] = useState<null | string>(null);
+
 	return (
 		<div className="page page--gray page--main">
-			<Helmet>
-				<title>{`6 cities: ${offersAmount} places to stay in Amsterdam`}</title>
-			</Helmet>
 			<Header isAuthorized={faker.datatype.boolean()} />
 			<main className="page__main page__main--index">
 				<h1 className="visually-hidden">Cities</h1>
 				<div className="tabs">
 					<section className="locations container">
 						<ul className="locations__list tabs__list">
-							{CITIES.map((city) =>(
+							{cities.map((city) =>(
 								<li className="locations__item" key ={city}>
 									<a className={classNames(
 										'locations__item-link',
 										{
-											'tabs__item--active': city === 'Amsterdam',
+											'tabs__item--active': city === selectedCity,
 										},
 										'tabs__item'
 									)}
-									href="#"
+									href={`#${city.toLowerCase()}`}
+									onClick={() => setCity(city)}
 									>
 										<span>{city}</span>
 									</a>
@@ -50,7 +60,9 @@ function MainPage({ offersAmount = Default.Amount }: MainPageProps) {
 					<div className="cities__places-container container">
 						<section className="cities__places places">
 							<h2 className="visually-hidden">Places</h2>
-							<b className="places__found">{offersAmount} places to stay in Amsterdam</b>
+							<b className="places__found">
+								{offersByCity[selectedCity].length} places to stay in {selectedCity}
+							</b>
 							<form className="places__sorting" action="#" method="get">
 								<span className="places__sorting-caption">Sort by</span>
 								<span className="places__sorting-type" tabIndex={0}>
@@ -79,7 +91,7 @@ function MainPage({ offersAmount = Default.Amount }: MainPageProps) {
 							</form>
 							<div className="cities__places-list places__list tabs__content">
 								{offers.map((offer) =>(
-									<PlaceCard {...offer} key={offer.id}/>
+									<PlaceCard {...offer} key={offer.id} setActive={setOfer}/>
 								))}
 							</div>
 						</section>

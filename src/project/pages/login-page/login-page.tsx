@@ -1,13 +1,9 @@
-import { Header } from '../../components/header/header';
-import { Helmet } from 'react-helmet-async';
+import { useDocumentTitle } from '../../hooks/document-title';
 
 export function LoginPage(): JSX.Element{
+	useDocumentTitle('Enter your password');
 	return (
 		<div className="page page--gray page--login">
-			<Header hideNavigation/>
-			<Helmet>
-				<title>Login</title>
-			</Helmet>
 			<main className="page__main page__main--login">
 				<div className="page__login-container container">
 					<section className="login">
@@ -20,7 +16,6 @@ export function LoginPage(): JSX.Element{
 									type="email"
 									name="email"
 									placeholder="Email"
-									required=""
 								/>
 							</div>
 							<div className="login__input-wrapper form__input-wrapper">
@@ -30,7 +25,6 @@ export function LoginPage(): JSX.Element{
 									type="password"
 									name="password"
 									placeholder="Password"
-									required=""
 								/>
 							</div>
 							<button className="login__submit form__submit button" type="submit">

@@ -1,5 +1,5 @@
 const enum TemporalData {
-	OfferAmount = 312,
+	OfferAmount = 4,
 }
 
 const CITIES = [
