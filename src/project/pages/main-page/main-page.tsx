@@ -13,7 +13,7 @@ export type MainPageProps = {
 function MainPage({ offers }: MainPageProps) {
 
 	const offersByCity: Record<string, ServerOffer[]> = {};
-	for(const offer of offers) { //хз
+	for(const offer of offers) {
 		const city = offer.city.name;
 		if (city in offersByCity) {
 			offersByCity[city].push(offer);
@@ -27,7 +27,7 @@ function MainPage({ offers }: MainPageProps) {
 
 	const [selectedCity, setCity] = useState(cities[0]);
 
-	const [activeOffer, setOfer] = useState<null / string>(null);
+	const [activeOffer, setOfer] = useState<null | string>(null);
 
 	return (
 		<div className="page page--gray page--main">
@@ -61,7 +61,7 @@ function MainPage({ offers }: MainPageProps) {
 						<section className="cities__places places">
 							<h2 className="visually-hidden">Places</h2>
 							<b className="places__found">
-								{offersByCity[selectedCity].length} places to stay in Amsterdam
+								{offersByCity[selectedCity].length} places to stay in {selectedCity}
 							</b>
 							<form className="places__sorting" action="#" method="get">
 								<span className="places__sorting-caption">Sort by</span>
@@ -91,7 +91,7 @@ function MainPage({ offers }: MainPageProps) {
 							</form>
 							<div className="cities__places-list places__list tabs__content">
 								{offers.map((offer) =>(
-									<PlaceCard {...offer} key={offer.id}/>
+									<PlaceCard {...offer} key={offer.id} setActive={setOfer}/>
 								))}
 							</div>
 						</section>

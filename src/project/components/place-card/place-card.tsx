@@ -39,9 +39,6 @@ function PlaceCard({
 	function onMouseLeave() {
 		setActive!(null);
 	}
-
-
-
 	return (
 		<article
 			className="cities__card place-card"
