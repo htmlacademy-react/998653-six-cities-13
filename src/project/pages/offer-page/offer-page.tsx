@@ -14,7 +14,7 @@ const dateFormatter = new Intl.DateTimeFormat(
 		month: 'long',
 		year: 'numeric'
 	}
-);//КАК ДАННЫЕ (ПРОПСЫ) ПОПАДАЮТ В  foo?
+);//КАК ДАННЫЕ ( через ПРОПСЫ) ПОПАДАЮТ В  foo?
 export function OfferPage() {
 	useDocumentTitle('Offer Example');
 
@@ -154,7 +154,7 @@ export function OfferPage() {
 												{' '}
 												{dateFormatter.format(new Date())}
 												{' '}
-												{new Date().toLocaleDateString('en-US', {month:'long', year:'numiruc'})}
+												{new Date().toLocaleDateString('en-US', {month:'long', year:'numeric'})}
 											</time>
 										</div>
 									</li>
@@ -163,6 +163,7 @@ export function OfferPage() {
 							</section>
 						</div>
 					</div>
+					
 					<section className="offer__map map" />
 				</section>
 				<div className="container">
