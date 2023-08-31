@@ -4,7 +4,7 @@ import { useLoaderData } from 'react-router-dom';
 // import type { OfferPageLoaderResponse } from './loader';
 
 import { Header } from '../../components/header/header';
-import { PlaceCard } from '../../components/place-card/place-card';
+import {  } from '../../components/place-card/place-card';
 import { useDocumentTitle } from '../../hooks/document-title';
 // import {<ReviewForm } from './rewiew-form'
 
@@ -163,7 +163,7 @@ export function OfferPage() {
 							</section>
 						</div>
 					</div>
-					
+
 					<section className="offer__map map" />
 				</section>
 				<div className="container">
