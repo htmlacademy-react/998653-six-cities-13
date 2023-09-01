@@ -46,7 +46,6 @@ const router = createBrowserRouter([
 
 	{
 		element: <OfferPage />,
-		errorElement: <NotFoundScreen />,
 		// loader: OfferLoader, //?
 		path: AppRoute.Offer,
 	},

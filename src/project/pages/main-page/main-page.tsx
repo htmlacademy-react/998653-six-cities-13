@@ -4,6 +4,10 @@ import { Header } from '../../components/header/header';
 import { PlaceCard } from '../../components/place-card/place-card';
 import classNames from 'classnames';
 import { ServerOffer } from '../../types/offers';
+import { Map } from '../../components/map/map';
+import { ListPoints } from '../../components/map/list-points/list-points';
+import { CITY } from '../../mocks/city';
+import { POINTS } from '../../mocks/points';
 
 
 export type MainPageProps = {
@@ -96,7 +100,10 @@ function MainPage({ offers }: MainPageProps) {
 							</div>
 						</section>
 						<div className="cities__right-section">
-							<section className="cities__map map" />
+							<section>
+								<ListPoints points={POINTS} />
+								<Map city={CITY}/>
+							</section>
 						</div>
 					</div>
 				</div>

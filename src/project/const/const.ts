@@ -13,4 +13,7 @@ const enum AuthorizationStatus {
 
 const PROJECT_NAME = '6 cities';
 
-export { AppRoute, AuthorizationStatus, PROJECT_NAME };
+const MIN_COMMENT_LENGTH = 20;
+const MAX_COMMENT_LENGTH = 1024;
+
+export { AppRoute, AuthorizationStatus, PROJECT_NAME, MAX_COMMENT_LENGTH, MIN_COMMENT_LENGTH };
