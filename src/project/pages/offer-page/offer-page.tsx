@@ -1,55 +1,79 @@
-import dayjs from 'dayjs';
-import { useLoaderData } from 'react-router-dom';
-
-// import type { OfferPageLoaderResponse } from './loader';
-
-import { Header } from '../../components/header/header';
-import { PlaceCard} from '../../components/place-card/place-card';
+import { Header } from '../../components/app/header/header';
 import { useDocumentTitle } from '../../hooks/document-title';
-// import {<ReviewForm } from './rewiew-form'
+import { ReviewForm } from '../../components/app/review-form/review-form';
 
-const dateFormatter = new Intl.DateTimeFormat(
-	'en-Us',
-	{
-		month: 'long',
-		year: 'numeric'
-	}
-);//КАК ДАННЫЕ ( через ПРОПСЫ) ПОПАДАЮТ В  foo?
+// const dateFormatter = new Intl.DateTimeFormat(
+// 	'en-Us',
+// 	{
+// 		month: 'long',
+// 		year: 'numeric'
+// 	}
+// );
+
 export function OfferPage() {
 	useDocumentTitle('Offer Example');
 
-	const { isAuthorized, offer } = useLoaderData() as OfferPageLoaderResponse; // это состояние? Что мы деструктуризируем? Как у нас попадают мокки?
+	// const { isAuthorized, offer } = useLoaderData();
 
 	return(
 		<div className="page">
-			<Header isAuthorized ={isAuthorized} />
+			<Header />
 			<main className="page__main page__main--offer">
 				<section className="offer">
 					<div className="offer__gallery-container container">
 						<div className="offer__gallery">
-							{offer.images.map((image) => (
-								<div className="offer__image-wrapper" key={image}>
-									<img
-										className="offer__image"
-										src={image}
-										alt={offer.title}
-									/>
-								</div>
-							))}
-
+							<div className="offer__image-wrapper">
+								<img
+									className="offer__image"
+									src="img/room.jpg"
+									alt="Photo studio"
+								/>
+							</div>
+							<div className="offer__image-wrapper">
+								<img
+									className="offer__image"
+									src="img/apartment-01.jpg"
+									alt="Photo studio"
+								/>
+							</div>
+							<div className="offer__image-wrapper">
+								<img
+									className="offer__image"
+									src="img/apartment-02.jpg"
+									alt="Photo studio"
+								/>
+							</div>
+							<div className="offer__image-wrapper">
+								<img
+									className="offer__image"
+									src="img/apartment-03.jpg"
+									alt="Photo studio"
+								/>
+							</div>
+							<div className="offer__image-wrapper">
+								<img
+									className="offer__image"
+									src="img/studio-01.jpg"
+									alt="Photo studio"
+								/>
+							</div>
+							<div className="offer__image-wrapper">
+								<img
+									className="offer__image"
+									src="img/apartment-01.jpg"
+									alt="Photo studio"
+								/>
+							</div>
 						</div>
 					</div>
 					<div className="offer__container container">
 						<div className="offer__wrapper">
-							{offer.isPremium && (
-								<div className="offer__mark">
-									<span>Premium</span>
-								</div>
-							)}
-
+							<div className="offer__mark">
+								<span>Premium</span>
+							</div>
 							<div className="offer__name-wrapper">
 								<h1 className="offer__name">
-									{offer.title}
+              Beautiful &amp; luxurious studio at great location
 								</h1>
 								<button className="offer__bookmark-button button" type="button">
 									<svg className="offer__bookmark-icon" width={31} height={33}>
@@ -60,37 +84,37 @@ export function OfferPage() {
 							</div>
 							<div className="offer__rating rating">
 								<div className="offer__stars rating__stars">
-									<span style={{ width: `${offer.rating * 20}%`}} />
+									<span style={{ width: '80%' }} />
 									<span className="visually-hidden">Rating</span>
 								</div>
-								<span className="offer__rating-value rating__value">
-									{offer.rating.toFixed(1)}
-								</span>
+								<span className="offer__rating-value rating__value">4.8</span>
 							</div>
 							<ul className="offer__features">
-								<li className="offer__feature offer__feature--entire">
-									{offer.type}
-								</li>
+								<li className="offer__feature offer__feature--entire">Apartment</li>
 								<li className="offer__feature offer__feature--bedrooms">
-          				{offer.bedrooms} Bedrooms
+              3 Bedrooms
 								</li>
 								<li className="offer__feature offer__feature--adults">
-             			 Max {offer.maxAdults} adults
+              Max 4 adults
 								</li>
 							</ul>
 							<div className="offer__price">
-								<b className="offer__price-value">€${offer.price}</b>
+								<b className="offer__price-value">€120</b>
 								<span className="offer__price-text">&nbsp;night</span>
 							</div>
 							<div className="offer__inside">
 								<h2 className="offer__inside-title">What's inside</h2>
 								<ul className="offer__inside-list">
-									{offer.goods.map((good) => (
-										<li className="offer__inside-item" key={good}>
-											{good}
-										</li>
-									))}
-
+									<li className="offer__inside-item">Wi-Fi</li>
+									<li className="offer__inside-item">Washing machine</li>
+									<li className="offer__inside-item">Towels</li>
+									<li className="offer__inside-item">Heating</li>
+									<li className="offer__inside-item">Coffee machine</li>
+									<li className="offer__inside-item">Baby seat</li>
+									<li className="offer__inside-item">Kitchen</li>
+									<li className="offer__inside-item">Dishwasher</li>
+									<li className="offer__inside-item">Cabel TV</li>
+									<li className="offer__inside-item">Fridge</li>
 								</ul>
 							</div>
 							<div className="offer__host">
@@ -99,21 +123,25 @@ export function OfferPage() {
 									<div className="offer__avatar-wrapper offer__avatar-wrapper--pro user__avatar-wrapper">
 										<img
 											className="offer__avatar user__avatar"
-											src={offer.goods.avatarUrl}
+											src="img/avatar-angelina.jpg"
 											width={74}
 											height={74}
 											alt="Host avatar"
 										/>
 									</div>
-									<span className="offer__user-name">{offer.host.name}</span>
-									{offer.host.isPro && (
-										<span className="offer__user-status">Pro</span>
-										)}
-
+									<span className="offer__user-name">Angelina</span>
+									<span className="offer__user-status">Pro</span>
 								</div>
 								<div className="offer__description">
 									<p className="offer__text">
-										{offer.description}
+                A quiet cozy and picturesque that hides behind a a river by the
+                unique lightness of Amsterdam. The building is green and from
+                18th century.
+									</p>
+									<p className="offer__text">
+                An independent House, strategically located between Rembrand
+                Square and National Opera, but where the bustle of the city
+                comes to rest in this alley flowery and colorful.
 									</p>
 								</div>
 							</div>
@@ -148,22 +176,15 @@ export function OfferPage() {
                     from 18th century.
 											</p>
 											<time className="reviews__time" dateTime="2019-04-24">
-                    		{/*April 2019*/}
-
-												{dayjs(new Date()).format('MMMM YYYY')}
-												{' '}
-												{dateFormatter.format(new Date())}
-												{' '}
-												{new Date().toLocaleDateString('en-US', {month:'long', year:'numeric'})}
+                    April 2019
 											</time>
 										</div>
 									</li>
 								</ul>
-								{isAuthorized && <ReviewForm /> /*ReviwevForm???*/}
+								<ReviewForm />
 							</section>
 						</div>
 					</div>
-
 					<section className="offer__map map" />
 				</section>
 				<div className="container">
@@ -312,6 +333,5 @@ export function OfferPage() {
 				</div>
 			</main>
 		</div>
-
 	);
 }

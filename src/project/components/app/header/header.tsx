@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import { useLocation } from 'react-router-dom';
 
-import { AppRoute } from '../../const/const';
-import { AppLink } from '../../link/link';
+import { AppRoute } from '../../../const/const';
+import { AppLink } from '../../../link/link';
 
 
 interface HeaderProps {

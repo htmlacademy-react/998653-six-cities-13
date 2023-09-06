@@ -1,6 +1,6 @@
 import classNames from 'classnames';
-import type { ServerOffer } from '../../types/offers';
-import { AppLink } from '../../link/link';
+import type { ServerOffer } from '../../../types/offers';
+import { AppLink } from '../../../link/link';
 import { Dispatch, SetStateAction } from 'react';
 
 type OfferCardProps = Pick<

@@ -1,4 +1,4 @@
-import { Header } from '../../components/header/header';
+import { Header } from '../../components/app/header/header';
 import { useDocumentTitle } from '../../hooks/document-title';
 
 export function FavoritePage(): JSX.Element {
