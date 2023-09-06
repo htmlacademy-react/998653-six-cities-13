@@ -3,6 +3,7 @@ import { useDocumentTitle } from '../../hooks/document-title';
 
 export function FavoritePage(): JSX.Element {
 	useDocumentTitle('Favorites');
+
 	return (
 		<div className="page">
 			<Header isAuthorized />

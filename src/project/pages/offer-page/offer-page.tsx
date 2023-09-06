@@ -1,6 +1,7 @@
 import { Header } from '../../components/app/header/header';
 import { useDocumentTitle } from '../../hooks/document-title';
 import { ReviewForm } from '../../components/app/review-form/review-form';
+import { OfferDetails } from '../../components/app/offer-details/offer-details';
 
 // const dateFormatter = new Intl.DateTimeFormat(
 // 	'en-Us',
@@ -20,52 +21,7 @@ export function OfferPage() {
 			<Header />
 			<main className="page__main page__main--offer">
 				<section className="offer">
-					<div className="offer__gallery-container container">
-						<div className="offer__gallery">
-							<div className="offer__image-wrapper">
-								<img
-									className="offer__image"
-									src="img/room.jpg"
-									alt="Photo studio"
-								/>
-							</div>
-							<div className="offer__image-wrapper">
-								<img
-									className="offer__image"
-									src="img/apartment-01.jpg"
-									alt="Photo studio"
-								/>
-							</div>
-							<div className="offer__image-wrapper">
-								<img
-									className="offer__image"
-									src="img/apartment-02.jpg"
-									alt="Photo studio"
-								/>
-							</div>
-							<div className="offer__image-wrapper">
-								<img
-									className="offer__image"
-									src="img/apartment-03.jpg"
-									alt="Photo studio"
-								/>
-							</div>
-							<div className="offer__image-wrapper">
-								<img
-									className="offer__image"
-									src="img/studio-01.jpg"
-									alt="Photo studio"
-								/>
-							</div>
-							<div className="offer__image-wrapper">
-								<img
-									className="offer__image"
-									src="img/apartment-01.jpg"
-									alt="Photo studio"
-								/>
-							</div>
-						</div>
-					</div>
+					<OfferDetails />
 					<div className="offer__container container">
 						<div className="offer__wrapper">
 							<div className="offer__mark">
@@ -103,7 +59,7 @@ export function OfferPage() {
 								<span className="offer__price-text">&nbsp;night</span>
 							</div>
 							<div className="offer__inside">
-								<h2 className="offer__inside-title">What's inside</h2>
+								<h2 className="offer__inside-title">What&apos;s inside</h2>
 								<ul className="offer__inside-list">
 									<li className="offer__inside-item">Wi-Fi</li>
 									<li className="offer__inside-item">Washing machine</li>
