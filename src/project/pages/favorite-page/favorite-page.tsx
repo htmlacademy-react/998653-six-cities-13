@@ -1,5 +1,20 @@
 import { Header } from '../../components/app/header/header';
 import { useDocumentTitle } from '../../hooks/document-title';
+import { ServerOffer } from '../../types/offers';
+
+type TFavoritePageProps = {
+	offers: ServerOffer[];
+}
+
+function getFavoritesByCity(favorites: ServerOffer[]) {
+	return favorites.reduce<{ [key: string]: ServerOffer[]}>((acc, curr) => {acc + curr}, 0); //хз
+	const city = curr.city.name;
+
+	if(!(city in acc)) {
+		acc[city] = [];
+	}
+	acc[city].push(curr);
+}
 
 export function FavoritePage(): JSX.Element {
 	useDocumentTitle('Favorites');
