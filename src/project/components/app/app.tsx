@@ -18,7 +18,7 @@ const authorizationStatus = mockAuthStatus();
 
 const router = createBrowserRouter([
 	{
-		element: <MainPage offers={mockedOffers} />,
+		element: <MainPage offers= { mockedOffers } />,
 		path: AppRoute.Main,
 	},
 
@@ -45,7 +45,7 @@ const router = createBrowserRouter([
 	},
 
 	{
-		element: <OfferPage />,
+		element: <OfferPage offers={mockedOffers}/>,
 		// loader: OfferLoader, //?
 		path: AppRoute.Offer,
 	},
