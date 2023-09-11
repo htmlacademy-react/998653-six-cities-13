@@ -5,6 +5,7 @@ interface ServerLocation {
 }
 
 interface ServerOffer {
+	push(offer: ServerOffer): unknown;
 	city: {
 		name: string;
 		location: ServerLocation;

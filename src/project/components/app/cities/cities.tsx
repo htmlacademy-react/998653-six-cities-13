@@ -19,7 +19,7 @@ function Cities({offers}: MainPageProps) {
 	}
 
 	const cities = Object.keys(offersByCity);
-	const [selectedCity, setCity] = useState(cities[0]);
+	const [selectedCity] = useState(cities[0]);
 
 	return(<div className="cities">
 		<div className="cities__places-container container">
@@ -55,7 +55,7 @@ function Cities({offers}: MainPageProps) {
 					</ul>
 				</form>
 				<div className="cities__places-list places__list tabs__content">
-					{offers.map((offer) =>(
+					{offersByCity[selectedCity].map((offer) =>(
 						<PlaceCard {...offer} key={offer.id}/>
 					))}
 				</div>
