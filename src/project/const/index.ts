@@ -1,3 +1,4 @@
+
 const enum TemporalData {
 	OfferAmount = 4,
 }
@@ -20,5 +21,6 @@ const OFFER_TYPES = [
 ] as const;
 
 const OFFER_COUNT = 4;
+
 
 export{ TemporalData, CITIES, OFFER_TYPES, OFFER_COUNT };

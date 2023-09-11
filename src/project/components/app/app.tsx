@@ -3,22 +3,21 @@ import {
 	createBrowserRouter
 } from 'react-router-dom';
 
+
 import { AppRoute} from '../../const/const';
-import { mockAuthStatus } from '../../mocks/auth';
-import { mockedOffers } from '../../mocks/offers';
+import { mockStore } from '../../mocks/index';
 import { NotFoundScreen } from '../../pages/not-found-screen/not-found-screen';
 import { PrivateRoute, PublicRoute } from '../../pages/AccessRoute';
 import { FavoritePage }	from '../../pages/favorite-page/favorite-page';
 import { LoginPage } from '../../pages/login-page/login-page';
-import { MainPage } from '../../pages/main-page/main-page';
-// import { loader as OfferLoader, OfferPage }from '../../pages/offer-page/offer-page'; //?
-import { OfferPage }from '../../pages/offer-page/offer-page';
+import { loader as AllOffersLoader, MainPage } from '../../pages/main-page/main-page';
+import { loader as OfferLoader, OfferPage }from '../../pages/offer-page/offer-page';
 
-const authorizationStatus = mockAuthStatus();
 
 const router = createBrowserRouter([
 	{
-		element: <MainPage offers= { mockedOffers } />,
+		element: <MainPage />,
+		loader: AllOffersLoader,
 		path: AppRoute.Main,
 	},
 
@@ -29,7 +28,7 @@ const router = createBrowserRouter([
 				index: true,
 			},
 		],
-		element: <PrivateRoute status={authorizationStatus}> </PrivateRoute>,
+		element: <PrivateRoute status={mockStore.auth}> </PrivateRoute>,
 		path: AppRoute.Favorites,
 	},
 
@@ -40,13 +39,14 @@ const router = createBrowserRouter([
 				index: true,
 			},
 		],
-		element: <PublicRoute status={authorizationStatus}> </PublicRoute>,
+		element: <PublicRoute status={mockStore.auth}> </PublicRoute>,
 		path: AppRoute.Login
 	},
 
 	{
-		element: <OfferPage offers={mockedOffers}/>,
-		// loader: OfferLoader, //?
+		element: <OfferPage />,
+		errorElement: <NotFoundScreen />,
+		loader: OfferLoader,
 		path: AppRoute.Offer,
 	},
 

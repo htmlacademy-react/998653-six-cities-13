@@ -1,9 +1,17 @@
+import { useLoaderData, useParams } from 'react-router';
+
+import type { FullOffer } from '../../types/offers';
+
 import { Header } from '../../components/app/header/header';
+import { AuthorizationStatus } from '../../const/const';
 import { useDocumentTitle } from '../../hooks/document-title';
 import { OfferDetails } from '../../components/app/offer-details/offer-details';
-import { FullOffer } from '../../types/offers';
-import { useParams } from 'react-router';
+import { mockStore } from '../../mocks/index';
 
+interface LoaderResponse {
+	isAuthorized: boolean;
+	offer: FullOffer;
+}
 // const dateFormatter = new Intl.DateTimeFormat(
 // 	'en-Us',
 // 	{
@@ -12,21 +20,17 @@ import { useParams } from 'react-router';
 // 	}
 // );
 
-type TOfferPageProps = {
-	offers: FullOffer[];
-};
-
-export function OfferPage({ offers } : TOfferPageProps) {
+export function OfferPage() {
 	useDocumentTitle('Offer Example');
-	// const { isAuthorized, offer } = useLoaderData();
+	const { isAuthorized, offer } = useLoaderData() as LoaderResponse;
 
-	const { offerId } = useParams(); // не могу вытащить
-	const offer = offers.find((item) => item.id === offerId);
+	// const { offerId } = useParams(); // не могу вытащить
+	// const offer = offers.find((item) => item.id === offerId);
 
 
 	return(
 		<div className="page">
-			<Header />
+			<Header isAuthorized={isAuthorized}/>
 			<main className="page__main page__main--offer">
 				<section className="offer">
 					<OfferDetails offer={offer} />

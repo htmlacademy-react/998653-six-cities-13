@@ -1,36 +1,41 @@
-import { useState } from 'react';
-import { faker } from '@faker-js/faker';
-import { Header } from '../../components/app/header/header';
 import classNames from 'classnames';
-import { ServerOffer } from '../../types/offers';
+import { useEffect, useState } from 'react';
+import { useLoaderData, useLocation, useNavigate } from 'react-router';
+import { Header } from '../../components/app/header/header';
+import { AppLink } from '../../link/link';
 import { PlaceCard } from '../..//components/app/place-card/place-card';
+import { AuthorizationStatus } from '../../const/const';
+import { mockStore } from '../../mocks/index';
+import type { ServerOffer } from '../../types/offers';
 
-export type MainPageProps = {
-	offers: ServerOffer[];
+ interface LoaderResponse {
+	auth: AuthorizationStatus;
+	cities: string[];
+	offersByCity: Record<string, ServerOffer[]>;
 }
 
-function MainPage({ offers }: MainPageProps) {
-
-	const offersByCity: Record<string, ServerOffer[]> = {};
-
-	for (const offer of offers) {
-		const city = offer.city.name;
-
-		if(city in offersByCity) {
-			offersByCity[city].push(offer);
-			continue;
-		}
-
-		offersByCity[city] = [offer];
-	}
-
-	const cities = Object.keys(offersByCity);
+function MainPage() {
+	const {auth, cities, offersByCity} = useLoaderData() as LoaderResponse; // ?
 
 	const [selectedCity, setSelectedCity] = useState(cities[0]);
 
+	const {hash} = useLocation(); //что возвращает ? location?
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		if(hash.length === 0) {
+			return navigate(`#${selectedCity.toLowerCase()}`);
+		}
+
+		const cityLowerCase = hash.slice(1);
+		setSelectedCity(cityLowerCase[0].toUpperCase + cityLowerCase.slice(1));
+
+	},[hash]);
+
+
 	return (
 		<div className="page page--gray page--main">
-			<Header isAuthorized={faker.datatype.boolean()} />
+			<Header isAuthorized={AuthorizationStatus.Auth} />
 			<main className="page__main page__main--index">
 				<h1 className="visually-hidden">Cities</h1>
 				<div className="tabs">
@@ -38,18 +43,18 @@ function MainPage({ offers }: MainPageProps) {
 						<ul className="locations__list tabs__list">
 							{cities.map((city) =>(
 								<li className="locations__item" key ={city}>
-									<a className={classNames(
-										'locations__item-link',
-										{
-											'tabs__item--active': city === selectedCity,
-										},
-										'tabs__item'
-									)}
-									href={`#${city.toLowerCase()}`}
-									onClick={() => setSelectedCity(city)}
+									<AppLink
+										className={classNames(
+											'locations__item-link',
+											{
+												'tabs__item--active': city === selectedCity,
+											},
+											'tabs__item'
+										)}
+										href={`#${city.toLowerCase()}`}
 									>
 										<span>{city}</span>
-									</a>
+									</AppLink>
 								</li>
 							))}
 						</ul>
@@ -105,5 +110,30 @@ function MainPage({ offers }: MainPageProps) {
 
 	);
 }
+// eslint-disable-next-line react-refresh/only-export-components
+export function loader(): LoaderResponse {
+	const{auth, offers} = mockStore;
+	const cities: string[] = [];
+
+	const offersByCity = {};
+	for (const offer of offers) {
+		const city = offer.city.name;
+		if(city in offersByCity) {
+			offersByCity[city].push(offer);
+			continue;
+		}
+
+		cities.push(city);
+		offersByCity[city] = [offer];
+		continue;
+	}
+
+	return {
+		auth,
+		cities: cities.sort(),
+		offersByCity
+	};
+}
 
 export{ MainPage } ;
+

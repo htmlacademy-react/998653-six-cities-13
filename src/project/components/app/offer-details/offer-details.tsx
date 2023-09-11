@@ -10,16 +10,16 @@ function OfferDetails({ offer }: TOfferDetails) {
 
 	const {
 		isPremium,
+		description,
 		price,
 		rating,
 		title,
 		type,
-		description,
 		bedrooms,
 		goods,
 		images,
 		maxAdults,
-		host
+		host,
 	} = offer;
 
 	return(
@@ -31,7 +31,7 @@ function OfferDetails({ offer }: TOfferDetails) {
 							key={image}
 							className="offer__image-wrapper"
 						>
-							<img className="offer__image" src={image} alt={description} />
+							<img className="offer__image" src={image} alt={title} />
 						</div>
 					))}
 				</div>
@@ -54,10 +54,10 @@ function OfferDetails({ offer }: TOfferDetails) {
 					</div>
 					<div className="offer__rating rating">
 						<div className="offer__stars rating__stars">
-							<span style={{ width: '80%' }} />
+							<span style={{ width: `${rating * 20}%` }} />
 							<span className="visually-hidden">Rating</span>
 						</div>
-						<span className="offer__rating-value rating__value">{rating}</span>
+						<span className="offer__rating-value rating__value">{rating.toFixed(1)}</span>
 					</div>
 					<ul className="offer__features">
 						<li className="offer__feature offer__feature--entire">{type}</li>
@@ -72,7 +72,8 @@ function OfferDetails({ offer }: TOfferDetails) {
 						<h2 className="offer__inside-title">What&apos;s inside</h2>
 						<ul className="offer__inside-list">
 							{goods.map((good) => (
-								<li key= {good} className="offer__inside-item">{good}</li>
+								<li key= {good} className="offer__inside-item">{good}
+								</li>
 							))}
 						</ul>
 					</div>
@@ -95,18 +96,11 @@ function OfferDetails({ offer }: TOfferDetails) {
 						</div>
 						<div className="offer__description">
 							<p className="offer__text">
-            A quiet cozy and picturesque that hides behind a a river by the
-            unique lightness of Amsterdam. The building is green and from 18th
-            century.
-							</p>
-							<p className="offer__text">
-            An independent House, strategically located between Rembrand Square
-            and National Opera, but where the bustle of the city comes to rest
-            in this alley flowery and colorful.
+								{description}
 							</p>
 						</div>
 					</div>
- 
+
 					<section className="offer__reviews reviews">
 						<h2 className="reviews__title">
           Reviews · <span className="reviews__amount">1</span>
