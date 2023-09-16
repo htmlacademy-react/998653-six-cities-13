@@ -1,4 +1,4 @@
-import { useLoaderData, useParams } from 'react-router';
+import { type LoaderFunctionArgs, useLoaderData, useParams } from 'react-router-dom';
 
 import type { FullOffer } from '../../types/offers';
 
@@ -24,18 +24,17 @@ export function OfferPage() {
 	useDocumentTitle('Offer Example');
 	const { isAuthorized, offer } = useLoaderData() as LoaderResponse;
 
-	// const { offerId } = useParams(); // не могу вытащить
-	// const offer = offers.find((item) => item.id === offerId);
-
-
 	return(
 		<div className="page">
 			<Header isAuthorized={isAuthorized}/>
 			<main className="page__main page__main--offer">
 				<section className="offer">
 					<OfferDetails offer={offer} />
+
+					{/* {отдельный компонент} */}
 					<section className="offer__map map" />
 				</section>
+
 				<div className="container">
 					<section className="near-places places">
 						<h2 className="near-places__title">
@@ -183,4 +182,25 @@ export function OfferPage() {
 			</main>
 		</div>
 	);
+}
+
+//пояснить
+export function loader({
+	params,
+}:LoaderFunctionArgs): LoaderResponse | Response {
+
+	const id = params.id;
+
+	if(id === undefined) {
+		return new Response('Not Found', { status: 404});
+	}
+
+	const {auth, offers} = mockStore;
+
+	const offer = offers.find((storeOffer) => storeOffer.id === id);
+
+	return {
+		isAuthorized: auth === AuthorizationStatus.Auth,
+		offer,
+	};
 }

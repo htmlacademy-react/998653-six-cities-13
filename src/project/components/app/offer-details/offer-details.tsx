@@ -44,7 +44,7 @@ function OfferDetails({ offer }: TOfferDetails) {
 						</div>
 					)}
 					<div className="offer__name-wrapper">
-						<h1 className="offer__name">{title}</h1>
+						<h1 className="offer__name" >{title}</h1>
 						<button className="offer__bookmark-button button" type="button">
 							<svg className="offer__bookmark-icon" width={31} height={33}>
 								<use xlinkHref="#icon-bookmark" />
@@ -57,12 +57,20 @@ function OfferDetails({ offer }: TOfferDetails) {
 							<span style={{ width: `${rating * 20}%` }} />
 							<span className="visually-hidden">Rating</span>
 						</div>
-						<span className="offer__rating-value rating__value">{rating.toFixed(1)}</span>
+						<span className="offer__rating-value rating__value">
+							{rating.toFixed(1)}
+						</span>
 					</div>
 					<ul className="offer__features">
-						<li className="offer__feature offer__feature--entire">{type}</li>
-						<li className="offer__feature offer__feature--bedrooms">{bedrooms} Bedrooms</li>
-						<li className="offer__feature offer__feature--adults">Max {maxAdults} adults</li>
+						<li className="offer__feature offer__feature--entire">
+							{type}
+						</li>
+						<li className="offer__feature offer__feature--bedrooms">
+							{bedrooms} Bedrooms
+						</li>
+						<li className="offer__feature offer__feature--adults">
+							Max {maxAdults} adults
+						</li>
 					</ul>
 					<div className="offer__price">
 						<b className="offer__price-value">€{price}</b>
@@ -72,7 +80,8 @@ function OfferDetails({ offer }: TOfferDetails) {
 						<h2 className="offer__inside-title">What&apos;s inside</h2>
 						<ul className="offer__inside-list">
 							{goods.map((good) => (
-								<li key= {good} className="offer__inside-item">{good}
+								<li key= {good} className="offer__inside-item">
+									{good}
 								</li>
 							))}
 						</ul>
@@ -100,10 +109,10 @@ function OfferDetails({ offer }: TOfferDetails) {
 							</p>
 						</div>
 					</div>
-
+					{/* Это отдельный компонент? */}
 					<section className="offer__reviews reviews">
-						<h2 className="reviews__title">
-          Reviews · <span className="reviews__amount">1</span>
+						<h2 className="reviews__title">Reviews ·
+							<span className="reviews__amount">1</span>
 						</h2>
 						<ul className="reviews__list">
 							<li className="reviews__item">
