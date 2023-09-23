@@ -1,4 +1,4 @@
-import { type LoaderFunctionArgs, useLoaderData, useParams } from 'react-router-dom';
+import { type LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
 
 import type { FullOffer } from '../../types/offers';
 
@@ -23,7 +23,6 @@ interface LoaderResponse {
 export function OfferPage() {
 	useDocumentTitle('Offer Example');
 	const { isAuthorized, offer } = useLoaderData() as LoaderResponse;
-
 	return(
 		<div className="page">
 			<Header isAuthorized={isAuthorized}/>
@@ -187,20 +186,18 @@ export function OfferPage() {
 //пояснить
 export function loader({
 	params,
-}:LoaderFunctionArgs): LoaderResponse | Response {
-
+}: LoaderFunctionArgs): LoaderResponse | Response {
 	const id = params.id;
 
 	if(id === undefined) {
 		return new Response('Not Found', { status: 404});
 	}
-
-	const {auth, offers} = mockStore;
+	const { auth, offers } = mockStore;
 
 	const offer = offers.find((storeOffer) => storeOffer.id === id);
-
 	return {
 		isAuthorized: auth === AuthorizationStatus.Auth,
 		offer,
 	};
 }
+

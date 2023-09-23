@@ -4,20 +4,21 @@ import { useLoaderData, useLocation, useNavigate } from 'react-router';
 import { Header } from '../../components/app/header/header';
 import { AppLink } from '../../link/link';
 import { PlaceCard } from '../..//components/app/place-card/place-card';
-import { AuthorizationStatus } from '../../const/const';
 import { mockStore } from '../../mocks/index';
 import type { ServerOffer } from '../../types/offers';
 
  interface LoaderResponse {
-	auth: AuthorizationStatus;
 	cities: string[];
+	isAuthorized: boolean;
 	offersByCity: Record<string, ServerOffer[]>;
 }
 
 function MainPage() {
-	const {auth, cities, offersByCity} = useLoaderData() as LoaderResponse; // ?
-
+	const { isAuthorized, cities, offersByCity } = useLoaderData() as LoaderResponse;
 	const [selectedCity, setSelectedCity] = useState(cities[0]);
+
+	const [activeOffer, setActiveOffer] = useState(cities[0]);
+	console.info(activeOffer); // нет id
 
 	const {hash} = useLocation(); //что возвращает ? location?
 	const navigate = useNavigate();
@@ -28,14 +29,18 @@ function MainPage() {
 		}
 
 		const cityLowerCase = hash.slice(1);
-		setSelectedCity(cityLowerCase[0].toUpperCase + cityLowerCase.slice(1));
-
+		setSelectedCity(cityLowerCase[0].toUpperCase() + cityLowerCase.slice(1));
 	},[hash]);
 
+	const currentOffers = offersByCity[selectedCity];
+	const hasOffers = currentOffers.length > 0;
 
 	return (
-		<div className="page page--gray page--main">
-			<Header isAuthorized={AuthorizationStatus.Auth} />
+		<div
+			className={classNames('page page--gray page--main',
+				{'page__main--index-empty': !hasOffers,
+			})}>
+			<Header isAuthorized={isAuthorized} />
 			<main className="page__main page__main--index">
 				<h1 className="visually-hidden">Cities</h1>
 				<div className="tabs">
@@ -110,7 +115,6 @@ function MainPage() {
 
 	);
 }
-// eslint-disable-next-line react-refresh/only-export-components
 export function loader(): LoaderResponse {
 	const{auth, offers} = mockStore;
 	const cities: string[] = [];

@@ -1,12 +1,20 @@
+import type { Dispatch, SetStateAction } from 'react';
 import classNames from 'classnames';
 import type { ServerOffer } from '../../../types/offers';
 import { AppLink } from '../../../link/link';
-import { Dispatch, SetStateAction } from 'react';
+
 
 type OfferCardProps = Pick<
 ServerOffer,
-'id' |'isFavorite' | 'isPremium' | 'previewImage' |'price' | 'rating' | 'title' | 'type' > & {
-	setActive?: Dispatch<SetStateAction<null | string>>;
+|'id'
+|'isFavorite'
+| 'isPremium'
+| 'previewImage'
+|'price'
+| 'rating'
+| 'title'
+| 'type' > & {
+	setActive?: Dispatch<SetStateAction<null | string>>; //?
 }
 
 function PlaceCard({
