@@ -28,7 +28,6 @@ export function Map({activeId, className, location, offers}: MapProps): JSX.Elem
 					lat: offer.location.latitude,
 					lng: offer.location.longitude
 				});
-
 				marker
 					.setIcon(
 						activeId === offer.id
