@@ -8,7 +8,7 @@ import { useDocumentTitle } from '../../hooks/document-title';
 import { OfferDetails } from '../../components/app/offer-details/offer-details';
 import { mockStore } from '../../mocks/index';
 
-interface LoaderResponse {
+export interface LoaderResponse {
 	isAuthorized: boolean;
 	offer: FullOffer;
 }

@@ -28,16 +28,29 @@ export function Map({activeId, className, location, offers}: MapProps): JSX.Elem
 					lat: offer.location.latitude,
 					lng: offer.location.longitude
 				});
+
+				marker
+					.setIcon(
+						activeId === offer.id
+							? activeIcon
+							: defaultIcon
+					)
+					.addTo(markerLayer);
 			});
+			return () => {
+				map.removeLayer(markerLayer);
+			};
 		}
-	}, []);
+	}, [map, activeId, offers]);
 
 	//че дальше - ХЗ
 
 
 	return(
-		<div ref={mapRef}>
-
+		<div
+			ref={mapRef}
+			className={classNames(className, 'map')}
+		>
 		</div>
 	);
 }

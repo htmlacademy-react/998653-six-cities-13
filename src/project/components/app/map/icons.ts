@@ -18,4 +18,4 @@ const activeIcon = new Icon({
 });
 
 
-export { activeIcon, defaultIcon}
+export { activeIcon, defaultIcon};

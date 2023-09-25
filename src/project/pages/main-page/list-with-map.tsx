@@ -59,7 +59,6 @@ export function ListWithMap({offers}: ListWithMapProps) {
 			</section>
 			<div className="cities__right-section">
 				<section>
-					<Map activeId={activeOffer} location={offers[0]} offers={offers} className="cities__map"/>
 				</section>
 			</div>
 		</div>

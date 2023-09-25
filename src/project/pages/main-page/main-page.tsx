@@ -6,6 +6,7 @@ import { AppLink } from '../../link/link';
 import { PlaceCard } from '../..//components/app/place-card/place-card';
 import { mockStore } from '../../mocks/index';
 import type { ServerOffer } from '../../types/offers';
+// import { ListWithMap } from './list-with-map';
 
  interface LoaderResponse {
 	cities: string[];
@@ -111,9 +112,6 @@ function MainPage() {
 							</div>
 						</section>
 						<div className="cities__right-section">
-
-							<section>
-							</section>
 						</div>
 					</div>
 				</div>
