@@ -39,7 +39,8 @@ function MainPage() {
 		<div
 			className={classNames('page page--gray page--main',
 				{'page__main--index-empty': !hasOffers,
-			})}>
+				})}
+		>
 			<Header isAuthorized={isAuthorized} />
 			<main className="page__main page__main--index">
 				<h1 className="visually-hidden">Cities</h1>
@@ -100,11 +101,17 @@ function MainPage() {
 							</form>
 							<div className="cities__places-list places__list tabs__content">
 								{offersByCity[selectedCity].map((offer) =>(
-									<PlaceCard {...offer} key={offer.id}/>
+									<PlaceCard
+										{...offer}
+										key={offer.id}
+										extraBemBlock="cities"
+										setActive={setActiveOffer}
+									/>
 								))}
 							</div>
 						</section>
 						<div className="cities__right-section">
+
 							<section>
 							</section>
 						</div>

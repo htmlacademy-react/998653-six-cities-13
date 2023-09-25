@@ -1,10 +1,16 @@
 import classNames from 'classnames';
 import { ReviewForm } from '../review-form/review-form';
 import { FullOffer } from '../../../types/offers';
+import dayjs from 'dayjs';
 
 type TOfferDetails = {
 	offer: FullOffer;
 }
+
+const dateFormatter = new Intl.DateTimeFormat(
+	'en-US',
+	{month: 'long', year:'numeric'}
+);
 
 function OfferDetails({ offer }: TOfferDetails) {
 
@@ -141,12 +147,14 @@ function OfferDetails({ offer }: TOfferDetails) {
                 18th century.
 									</p>
 									<time className="reviews__time" dateTime="2019-04-24">
-                April 2019
+										{new Date().toLocaleDateString('en-US', { month:'long',
+											year:'numeric'})}
+
 									</time>
 								</div>
 							</li>
 						</ul>
-						<ReviewForm />
+						{<ReviewForm />}
 					</section>
 				</div>
 			</div>

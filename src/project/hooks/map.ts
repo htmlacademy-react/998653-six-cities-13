@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from 'react';
-import leaflet from 'leaflet';
 
 import type { MutableRefObject } from 'react';
 import type { ServerLocation } from '../types/offers';
@@ -10,7 +9,7 @@ function useMap(
 	mapRef: MutableRefObject<HTMLElement | null>, //?
 	location: ServerLocation): LeafletMap | null {
 	const [map, setMap] = useState<LeafletMap | null>(null);
-	const isRenderedRef = useRef(false);
+	const isRenderedRef = useRef<boolean>(false);
 
 	useEffect(() => {
 		if(mapRef.current !== null && !isRenderedRef.current) {
@@ -29,14 +28,14 @@ function useMap(
 
 					'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
 				}
-			)
-				.addTo(instance);
+			);
+			instance.add(layer);
 
 			setMap(instance);
 			isRenderedRef.current = true;
 
 		}
-	}, [mapRef, location.latitude, location.zoom]);
+	}, [mapRef, location]);
 	return map;
 }
 

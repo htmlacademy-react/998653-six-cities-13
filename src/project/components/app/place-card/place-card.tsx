@@ -6,25 +6,27 @@ import { AppLink } from '../../../link/link';
 
 type OfferCardProps = Pick<
 ServerOffer,
-|'id'
-|'isFavorite'
-| 'isPremium'
-| 'previewImage'
-|'price'
-| 'rating'
+| 'id'
+| 'isFavorite'
+|	'isPremium'
+|	'previewImage'
+|	'price'
+|	'rating'
 | 'title'
 | 'type' > & {
+	extraBemBlock?: string; //хз?
 	setActive?: Dispatch<SetStateAction<null | string>>; //?
 }
 
 function PlaceCard({
-	setActive,
+	extraBemBlock,
 	id,
 	isFavorite,
 	isPremium,
 	previewImage,
 	price,
 	rating,
+	setActive,
 	title,
 	type,
 }:OfferCardProps) {
@@ -49,7 +51,9 @@ function PlaceCard({
 	}
 	return (
 		<article
-			className="cities__card place-card"
+			className={classNames('place__card',{
+				[`${extraBemBlock}__card`]:extraBemBlock //почему  []?
+			})}
 			onMouseEnter={setActive && handleMouseEnter}
 			onMouseLeave={setActive && onMouseLeave}
 		>
@@ -59,7 +63,10 @@ function PlaceCard({
 				</div>
 			)}
 
-			<div className="cities__image-wrapper place-card__image-wrapper">
+			<div className= {classNames('place-card__image-wrapper', {
+				[`${extraBemBlock}__image-wrapper`]: extraBemBlock,
+			})}
+			>
 				<AppLink href={href}>
 					<img
 						className="place-card__image"

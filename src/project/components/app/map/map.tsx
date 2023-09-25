@@ -1,11 +1,38 @@
-import React, { useRef } from 'react';
-import leaflet from 'leaflet';
+import classNames from 'classnames';
+import { Marker, layerGroup } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { useMap } from '../../../hooks/map';
+import { useEffect, useRef } from 'react';
 
-function Map({activeId, location, offers}) {
+import type {ServerLocation, ServerOffer} from '../../../types/offers';
+
+import { useMap } from '../../../hooks/map';
+import { activeIcon, defaultIcon} from './icons';
+
+interface MapProps {
+	activeId: null | string;
+	className?: string;
+	location:ServerLocation;
+	offers: ServerOffer[];
+}
+
+export function Map({activeId, className, location, offers}: MapProps): JSX.Element {
+
 	const mapRef = useRef(null);
-	const map = useMap(mapRef, location.latitude, location.zoom);
+	const map = useMap(mapRef, location);
+
+	useEffect(() => {
+		if(map){
+			const markerLayer = layerGroup().addTo(map);
+			offers.forEach((offer) => {
+				const marker = new Marker({
+					lat: offer.location.latitude,
+					lng: offer.location.longitude
+				});
+			});
+		}
+	}, []);
+
+	//че дальше - ХЗ
 
 
 	return(
@@ -15,4 +42,4 @@ function Map({activeId, location, offers}) {
 	);
 }
 
-export { Map };
+

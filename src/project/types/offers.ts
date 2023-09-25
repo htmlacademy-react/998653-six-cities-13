@@ -4,19 +4,20 @@ interface ServerLocation {
 	zoom: number;
 }
 
+interface City {
+	name: string;
+	location: ServerLocation;
+}
+
 interface ServerOffer {
-	push(offer: ServerOffer): unknown;
-	city: {
-		name: string;
-		location: ServerLocation;
-	};
+	city: City;
 	id: string;
 	isFavorite: boolean;
 	isPremium: boolean;
 	location: ServerLocation;
 	previewImage: string;
 	price: number;
-	rating: 0 | 1 | 2 | 3| 4 | 5;
+	rating: number;
 	title: string;
 	type: string;
 }
